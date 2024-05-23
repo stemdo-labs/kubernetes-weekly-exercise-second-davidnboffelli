@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mariadb-service
+  namespace: laravel
+  labels:
+     app: mariadbapp
+spec:
+  ports:
+  - port: 3306
+  selector:
+     app: mariadbapp

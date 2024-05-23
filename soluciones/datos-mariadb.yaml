@@ -1,0 +1,10 @@
+apiVersion: v1
+data:
+  DB_DATABASE: bitnami_myapp
+  DB_DATABASE_HOST: mariadb-service
+  DB_DATABASE_PORT_NUMBER: "3306"
+  DB_DATABASE_USER: bn_myapp
+kind: ConfigMap
+metadata:
+  name: datos-mariadb
+  namespace: laravel
