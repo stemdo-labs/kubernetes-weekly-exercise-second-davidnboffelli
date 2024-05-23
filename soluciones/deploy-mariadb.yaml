@@ -1,0 +1,52 @@
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: mariadb-deploy
+  namespace: laravel
+spec:
+  selector:  
+    matchLabels:
+      app: mariadbapp
+  replicas: 1
+  template:  
+    metadata:
+      labels:
+        app: mariadbapp
+    spec:
+      containers:
+      - name: mariadbapp
+        image: mariadb:11.4.1-rc
+        ports:
+        - containerPort: 3306
+        resources:
+          limits:
+              memory: "200Mi"
+              cpu: "2"
+          requests:
+              memory: "100Mi" 
+              cpu: "0.5"
+        env:
+          - name: MARIADB_USER
+            valueFrom:
+              configMapKeyRef:
+                name: datos-mariadb
+                key: DB_DATABASE_USER
+          - name: MARIADB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: db-credentials
+                key: DB_DATABASE_PASSWORD
+          - name: MARIADB_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: db-credentials
+                key: DB_ROOT_PASSWORD
+          - name: MARIADB_DATABASE
+            valueFrom:
+              configMapKeyRef:
+                name: datos-mariadb
+                key: DB_DATABASE
+      volumes:
+        - name: bbdd
+          persistentVolumeClaim:
+             claimName: pvc-mariadb

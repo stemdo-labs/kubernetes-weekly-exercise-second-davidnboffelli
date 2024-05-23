@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+   name: ingress-weekly
+   namespace: laravel
+   annotations:
+     nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+   rules:
+   - host: localhost
+     http:
+       paths:
+       - path: /laravel
+         pathType: Exact
+         backend:
+           service:
+             name: laravel-service
+             port:
+               number: 8000
+      #  - path: /nginx
+      #    pathType: Exact
+      #    backend:
+      #      service:
+      #        name: nginx
+      #        port:
+      #          number: 80
