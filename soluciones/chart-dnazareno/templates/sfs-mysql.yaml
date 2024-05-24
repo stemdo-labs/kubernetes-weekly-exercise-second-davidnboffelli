@@ -1,0 +1,56 @@
+apiVersion: apps/v1 
+kind: StatefulSet
+metadata:
+  name: {{ .Release.Name }}-mysql-sfs
+  namespace: {{.Values.namespace}}
+spec:
+  replicas: {{.Values.mysqlReplicas}}
+  selector:  
+    matchLabels:
+      app: mysqlapp
+  serviceName: mysql-service
+  template:  
+    metadata:
+      labels:
+        app: mysqlapp
+    spec:
+      containers:
+      - name: mysqlapp
+        image: "mysql:{{.Values.mysqlTag}}"
+        volumeMounts:
+          - mountPath: /var/lib/mysql
+            name: vol-mysql
+        ports:
+        - containerPort: 3306
+        resources:
+          limits:
+              memory: {{.Values.mysqlMemorylimit}}
+              cpu: {{.Values.mysqlCPULimit}}
+          requests:
+              memory: {{.Values.mysqlMemoryRequest}}
+              cpu: {{.Values.mysqlCPURequest}}
+        env:
+          - name: MYSQL_USER
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Release.Name }}-datos-mysql
+                key: DB_DATABASE_USER
+          - name: MYSQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}-db-credentials
+                key: DB_DATABASE_PASSWORD
+          - name: MYSQL_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}-db-credentials
+                key: DB_ROOT_PASSWORD
+          - name: MYSQL_DATABASE
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Release.Name }}-datos-mysql
+                key: DB_DATABASE
+      volumes:
+        - name: vol-mysql
+          persistentVolumeClaim:
+             claimName: {{ .Release.Name }}-pvc-mysql

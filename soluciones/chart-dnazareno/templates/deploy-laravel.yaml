@@ -1,13 +1,13 @@
 apiVersion: apps/v1 
 kind: Deployment
 metadata:
-  name: laravel-deploy
-  namespace: laravel
+  name: {{ .Release.Name }}-laravel-deploy
+  namespace: {{.Values.namespace}}
 spec:
   selector:  
     matchLabels:
       app: laravel
-  replicas: 1
+  replicas: {{.Values.laravelReplicas}}
   strategy:
      type: Recreate
   template:   
@@ -17,53 +17,60 @@ spec:
     spec:
       containers:
       - name: laravel
+        image: "bitnami/laravel:{{ .Values.laravelTag }}"
         ports:
         - containerPort: 8000
-        image: bitnami/laravel:11.0.8
+        volumeMounts:
+          - mountPath: /app
+            name: vol-laravel
         resources:
           limits:
-              memory: "200Mi"
-              cpu: "2"
+              memory: {{.Values.laravelMemorylimit}}
+              cpu: {{.Values.laravelCPULimit}}
           requests:
-              memory: "100Mi" 
-              cpu: "0.5"
+              memory: {{.Values.laravelMemoryRequest}}
+              cpu: {{.Values.laravelCPURequest}}
         livenessProbe:
-            tcpSocket:
-              port: 8000
-            initialDelaySeconds: 0
-            periodSeconds: 5
+          exec:
+            command:
+            - ls
+            - /tmp/
+          initialDelaySeconds: 5
+          periodSeconds: 5
         readinessProbe:
-            tcpSocket:
-              port: 8000
-            initialDelaySeconds: 0
-            periodSeconds: 5
+          exec:
+            command:
+            - ls
+            - /tmp/
+          initialDelaySeconds: 10
+          periodSeconds: 5
         env:
           - name: LARAVEL_DATABASE_HOST
             valueFrom:
               configMapKeyRef:
-                name: datos-mariadb
+                name: {{ .Release.Name }}-datos-mysql
                 key: DB_DATABASE_HOST
           - name: LARAVEL_DATABASE_PORT_NUMBER
             valueFrom:
               configMapKeyRef:
-                name: datos-mariadb
+                name: {{ .Release.Name }}-datos-mysql
                 key: DB_DATABASE_PORT_NUMBER
           - name: LARAVEL_DATABASE_USER
             valueFrom:
               configMapKeyRef:
-                name: datos-mariadb
+                name: {{ .Release.Name }}-datos-mysql
                 key: DB_DATABASE_USER
           - name: LARAVEL_DATABASE_NAME
             valueFrom:
               configMapKeyRef:
-                name: datos-mariadb
+                name: {{ .Release.Name }}-datos-mysql
                 key: DB_DATABASE
           - name: LARAVEL_DATABASE_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: db-credentials
+                name: {{ .Release.Name }}-db-credentials
                 key: DB_DATABASE_PASSWORD
       volumes:
-        - name: bbdd
+        - name: vol-laravel
           persistentVolumeClaim:
-             claimName: pvc-laravel
+             claimName: {{ .Release.Name }}-pvc-laravel
