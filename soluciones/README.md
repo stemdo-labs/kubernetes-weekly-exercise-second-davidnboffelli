@@ -5,24 +5,24 @@
 ### Laravel: ###
 ############################################################
 
-Se usó la imagen de bitnami/laravel y, se propone, en su version 11.0.8
-Laravel tiene limites y requests de CPU y memoria.
-      No se creó un LimitRange, sino que se asignaron directamente en el deployment de laravel
-Laravel tiene un readinessProbe y un livenessProbe
-Volumen persistente para Laravel
-      Se usaron volumenes dinámicos. Los PV se crean automáticamente según necesidad.
-Ingress para acceder a Laravel desde un navegador
+Se usó la imagen de bitnami/laravel y, se propone, en su version 11.0.8<br>
+Laravel tiene limites y requests de CPU y memoria.<br>
+No se creó un LimitRange, sino que se asignaron directamente en el deployment de laravel<br>
+Laravel tiene un readinessProbe y un livenessProbe<br>
+Volumen persistente para Laravel<br>
+Se usaron volumenes dinámicos. Los PV se crean automáticamente según necesidad.<br>
+Ingress para acceder a Laravel desde un navegador<br>
 
 ############################################################
 ### BBDD: ###
 ############################################################
 
-Se usó la imagen oficial de la BBDD mysql y, se propone, en su version 8.0
-Mysql tiene limites y requests de CPU y memoria.
-      No se creó un LimitRange, sino que se asignaron directamente en el deployment de mysql
-Volumen persistentes para la BBDD
-      Se usaron volumenes dinámicos. Los PV se crean automáticamente según necesidad.
-No es un deployment, sino un statefulset
+Se usó la imagen oficial de la BBDD mysql y, se propone, en su version 8.0<br>
+Mysql tiene limites y requests de CPU y memoria.<br>
+No se creó un LimitRange, sino que se asignaron directamente en el deployment de mysql<br>
+Volumen persistentes para la BBDD<br>
+Se usaron volumenes dinámicos. Los PV se crean automáticamente según necesidad.<br>
+No es un deployment, sino un statefulset<br>
 
 ############################################################
 ### phpmyadmin: ###
