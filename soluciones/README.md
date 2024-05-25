@@ -2,7 +2,7 @@
 # ENUNCIADO Y ANOTACIONES
 ############################################################<br>
 ############################################################<br>
-### Laravel: ###
+### Laravel ###
 
 Se usó la imagen de bitnami/laravel y, se propone, en su version 11.0.8<br>
 Laravel tiene limites y requests de CPU y memoria.<br>
@@ -13,7 +13,7 @@ Volumen persistente para Laravel<br>
 Ingress para acceder a Laravel desde un navegador<br>
 
 ############################################################<br>
-### BBDD: ###
+### BBDD ###
 
 Se usó la imagen oficial de la BBDD mysql y, se propone, en su version 8.0<br>
 Mysql tiene limites y requests de CPU y memoria.<br>
@@ -23,7 +23,7 @@ Volumen persistentes para la BBDD<br>
 No es un deployment, sino un statefulset<br>
 
 ############################################################<br>
-### phpMyAdmin: ###
+### phpMyAdmin ###
 
 Se usó la imagen oficial de phpmyadmin y, se propone, en su version 5.2.1<br>
 Ingress para acceder a phpmyadmin desde un navegador<br>
@@ -31,7 +31,7 @@ Se usó el mismo ingress que laravel<br>
 phpmyadmin solicita autenticación para acceder<br>
 
 ############################################################<br>
-### Chart: ###
+### Chart ###
 
 En el value correspondiente, además de las variables default de los chart, se pueden configurar las siguientes variables:<br>
 
