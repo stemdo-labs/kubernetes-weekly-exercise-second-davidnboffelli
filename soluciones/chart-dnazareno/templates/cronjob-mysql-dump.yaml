@@ -1,0 +1,32 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: mysql-dump-cronjob
+  namespace: {{.Values.namespace}}
+spec:
+  schedule: "{{.Values.cronjobSchedule}}"
+  selector:  
+    matchLabels:
+      app: mysqlapp
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            app: mysqlapp
+        spec:
+          containers:
+          - name: mysql-dump-cronjob
+            image: "mysql:{{.Values.mysqlTag}}"
+            volumeMounts:
+              - mountPath: /backup
+                name: vol-cronjob
+            command:
+            - "/bin/sh"
+            - "-c"
+            - "mysqldump -h {{ .Release.Name }}-mysql-service -u root -p{{.Values.dbRootPass}} {{.Values.dbName}} > /backup/{{.Values.cronjobBackupName}}.sql"
+          restartPolicy: Never
+          volumes:
+            - name: vol-cronjob
+              persistentVolumeClaim:
+                claimName: {{ .Release.Name }}-pvc-cronjob
