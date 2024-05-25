@@ -67,6 +67,10 @@
 # ingressPathLaravel: Path por el que se accederá al servicio de laravel
 # ingressPathPhpmyadmin: Path por el que se accederá al servicio de phpmyadmin
 
+# cronjobPVCStorage: Tamaño del volumen persistente que donde se guardará el backup de la base de datos mysql
+# cronjobSchedule: Configuración del momento de ejecución del cronjob según documentación de Helm
+# cronjobBackupName: nombre del archivo sql donde se guardará el backup de la base de datos mysql
+
 # Valores en el Value por defecto:
 # namespace: laravel
 
@@ -100,12 +104,33 @@
 # ingressPathLaravel: /laravel
 # ingressPathPhpmyadmin: /phpmyadmin
 
+# cronjobPVCStorage: 500Mi
+# cronjobSchedule: "@daily"
+# cronjobBackupName: backup-$(date +'%Y%m%d%H%M%S')
+
 # Se crearon dos values de ejemplo con un lanzamiento de Laravel (solo laravel y BBDD) y otro con un lanzamiento de Laravel (laravel y BBDD) y phpmyadmin.
 # Son los archivos "value-laravel.yaml" y "value-laravel-pma.yaml"
 
-# Se debe crear un README.md con la información necesaria para desplegar el chart.
+#####################################################################################################################
+# Cronjob DUMP
+#####################################################################################################################
+# Se incluye un cronjob que se encarga de hacer un backup de la BBDD de Laravel cada 24 horas.
+# El backup se guarda en un volumen persistente
 
-# Opcional
-# Incluiremos un cronjob que se encargue de hacer un backup de la BBDD de Laravel cada 24 horas.
-# El backup se guardará en un volumen persistente
-# Se debe poder configurar la hora de ejecución del cronjob desde el values.yaml
+#####################################################################################################################
+# Configuración del Schedule según documentación de Helm
+#####################################################################################################################
+# __________________ minute (0 - 59)
+# |  _______________ hour (0 - 23)
+# |  |  ____________ day of the month (0 - 23)
+# |  |  |  _________ month (1 - 12)
+# |  |  |  |  ______ day of the week (0 - 6, start con sunday)
+# |  |  |  |  |
+# |  |  |  |  |
+# *  *  *  *  *
+
+# @yearly or @annually    anualmente el 1 de enero              0 0 1 1 *
+# @monthly                mensualmente el primer día del mes    0 0 1 * *
+# @weekly                 semanalmente el domingo a medianoche  0 0 * * 0
+# @daily                  diariamente a medianoche              0 0 * * *
+# @hourly                 a cada hora,a los 0 minute            0 * * * *

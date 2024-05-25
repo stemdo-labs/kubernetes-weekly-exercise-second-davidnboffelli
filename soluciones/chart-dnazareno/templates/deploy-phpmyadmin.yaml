@@ -35,4 +35,7 @@ spec:
               secretKeyRef:
                 name: {{ .Release.Name }}-phpmyadmin-credentials
                 key: DB_ROOT_PASSWORD
+          - name: APACHE_PORT
+            value: "8090"
+                
 {{- end}}

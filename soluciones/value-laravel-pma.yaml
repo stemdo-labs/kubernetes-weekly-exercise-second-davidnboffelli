@@ -38,6 +38,10 @@ ingressHost: k8sweekly.com
 ingressPathLaravel: /laravel
 ingressPathPhpmyadmin: /phpmyadmin
 
+cronjobPVCStorage: 500Mi
+cronjobSchedule: "@daily"
+cronjobBackupName: backup-$(date +'%Y%m%d%H%M%S')
+
 #############################################
 ### END CUSTOM VALUES FOR CHART-DNAZARENO
 #############################################
