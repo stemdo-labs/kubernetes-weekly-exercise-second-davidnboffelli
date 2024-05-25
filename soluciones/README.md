@@ -4,6 +4,7 @@
 ############################################################
 # Laravel:
 ############################################################
+
 Se usó la imagen de bitnami/laravel y, se propone, en su version 11.0.8
 Laravel tiene limites y requests de CPU y memoria.
       No se creó un LimitRange, sino que se asignaron directamente en el deployment de laravel
@@ -15,6 +16,7 @@ Ingress para acceder a Laravel desde un navegador
 ############################################################
 # BBDD:
 ############################################################
+
 Se usó la imagen oficial de la BBDD mysql y, se propone, en su version 8.0
 Mysql tiene limites y requests de CPU y memoria.
       No se creó un LimitRange, sino que se asignaron directamente en el deployment de mysql
@@ -33,6 +35,7 @@ phpmyadmin solicita autenticación para acceder
 ############################################################
 # chart:
 ############################################################
+
 En el value correspondiente, además de las variables default de los chart, se pueden configurar las siguientes variables:
 
 namespace: Nombre del namespace común para todos los recursos que despliega el chart
@@ -114,12 +117,14 @@ Son los archivos "value-laravel.yaml" y "value-laravel-pma.yaml"
 ############################################################
 # Cronjob DUMP
 ############################################################
+
 Se incluye un cronjob que se encarga de hacer un backup de la BBDD de Laravel cada 24 horas.
 El backup se guarda en un volumen persistente
 
 ############################################################
 # Configuración del Schedule según documentación de Helm
 ############################################################
+
 __________________ minute (0 - 59)
 |  _______________ hour (0 - 23)
 |  |  ____________ day of the month (0 - 23)
