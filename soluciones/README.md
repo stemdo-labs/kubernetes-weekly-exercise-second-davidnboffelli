@@ -27,115 +27,115 @@ No es un deployment, sino un statefulset<br>
 ############################################################
 ### phpmyadmin: ###
 ############################################################
-Se usó la imagen oficial de phpmyadmin y, se propone, en su version 5.2.1
-Ingress para acceder a phpmyadmin desde un navegador
-      Se usó el mismo ingress que laravel
-phpmyadmin solicita autenticación para acceder
+Se usó la imagen oficial de phpmyadmin y, se propone, en su version 5.2.1<br>
+Ingress para acceder a phpmyadmin desde un navegador<br>
+Se usó el mismo ingress que laravel<br>
+phpmyadmin solicita autenticación para acceder<br>
 
 ############################################################
 ### chart: ###
 ############################################################
 
-En el value correspondiente, además de las variables default de los chart, se pueden configurar las siguientes variables:
+En el value correspondiente, además de las variables default de los chart, se pueden configurar las siguientes variables:<br>
 
-namespace: Nombre del namespace común para todos los recursos que despliega el chart
+namespace: Nombre del namespace común para todos los recursos que despliega el chart<br>
 
-laravelReplicas: Número de réplicas que gestionará el deployment de laravel
-laravelTag: Versión de la imagen de bitnami/laravel que se usará
-laravelMemorylimit: Límite de memoria que tendrá el deployment de laravel
-laravelCPULimit: Límite de CPU que tendrá el deployment de laravel
-laravelMemoryRequest: Valor de memoria mínimo que le aseguraremos al deployment de laravel
-laravelCPURequest: Valor de CPU mínimo que le aseguraremos al deployment de laravel
-laravelPVCStorage: Tamaño del volumen persistente que usará laravel
+laravelReplicas: Número de réplicas que gestionará el deployment de laravel<br>
+laravelTag: Versión de la imagen de bitnami/laravel que se usará<br>
+laravelMemorylimit: Límite de memoria que tendrá el deployment de laravel<br>
+laravelCPULimit: Límite de CPU que tendrá el deployment de laravel<br>
+laravelMemoryRequest: Valor de memoria mínimo que le aseguraremos al deployment de laravel<br>
+laravelCPURequest: Valor de CPU mínimo que le aseguraremos al deployment de laravel<br>
+laravelPVCStorage: Tamaño del volumen persistente que usará laravel<br>
 
-phpmyadminReplicas: Número de réplicas que gestionará el deployment de phpmyadmin
-phpmyadminTag: Versión de la imagen oficial de phpmyadmin que se usará
-phpmyadminIsDeployed: Define si se desplegará o no phpmyadmin. Adopta los valores "true" y "false"
+phpmyadminReplicas: Número de réplicas que gestionará el deployment de phpmyadmin<br>
+phpmyadminTag: Versión de la imagen oficial de phpmyadmin que se usará<br>
+phpmyadminIsDeployed: Define si se desplegará o no phpmyadmin. Adopta los valores "true" y "false"<br>
 
-mysqlReplicas: Número de réplicas que gestionará el deployment de mysql
-mysqlTag: Versión de la imagen oficial de mysql que se usará
-mysqlMemorylimit: Límite de memoria que tendrá el deployment de mysql
-mysqlCPULimit: Límite de CPU que tendrá el deployment de mysql
-mysqlMemoryRequest: Valor de memoria mínimo que le aseguraremos al deployment de mysql
-mysqlCPURequest: Valor de CPU mínimo que le aseguraremos al deployment de mysql
-mysqlPVCStorage: Tamaño del volumen persistente que usará mysql
+mysqlReplicas: Número de réplicas que gestionará el deployment de mysql<br>
+mysqlTag: Versión de la imagen oficial de mysql que se usará<br>
+mysqlMemorylimit: Límite de memoria que tendrá el deployment de mysql<br>
+mysqlCPULimit: Límite de CPU que tendrá el deployment de mysql<br>
+mysqlMemoryRequest: Valor de memoria mínimo que le aseguraremos al deployment de mysql<br>
+mysqlCPURequest: Valor de CPU mínimo que le aseguraremos al deployment de mysql<br>
+mysqlPVCStorage: Tamaño del volumen persistente que usará mysql<br>
 
-dbName: Nombre de la base de datos mysql
-dbUser: Nombre de usuario que accederá en la base de datos mysql
-dbPass: Password que usará el usuario de la base de datos mysql
-dbRootPass: Password del usuario ROOT de la base de datos mysql
+dbName: Nombre de la base de datos mysql<br>
+dbUser: Nombre de usuario que accederá en la base de datos mysql<br>
+dbPass: Password que usará el usuario de la base de datos mysql<br>
+dbRootPass: Password del usuario ROOT de la base de datos mysql<br>
 
-ingressClassName: Nombre del ingressClass a usar
-ingressHost: Host por el que se accederá a los servicios desplegados desde el navegador
-ingressPathLaravel: Path por el que se accederá al servicio de laravel
-ingressPathPhpmyadmin: Path por el que se accederá al servicio de phpmyadmin
+ingressClassName: Nombre del ingressClass a usar<br>
+ingressHost: Host por el que se accederá a los servicios desplegados desde el navegador<br>
+ingressPathLaravel: Path por el que se accederá al servicio de laravel<br>
+ingressPathPhpmyadmin: Path por el que se accederá al servicio de phpmyadmin<br>
 
-cronjobPVCStorage: Tamaño del volumen persistente que donde se guardará el backup de la base de datos mysql
-cronjobSchedule: Configuración del momento de ejecución del cronjob según documentación de Helm
-cronjobBackupName: nombre del archivo sql donde se guardará el backup de la base de datos mysql
+cronjobPVCStorage: Tamaño del volumen persistente que donde se guardará el backup de la base de datos mysql<br>
+cronjobSchedule: Configuración del momento de ejecución del cronjob según documentación de Helm<br>
+cronjobBackupName: nombre del archivo sql donde se guardará el backup de la base de datos mysql<br>
 
-Valores en el Value por defecto:
-namespace: laravel
+Valores en el Value por defecto:<br>
+namespace: laravel<br>
 
-laravelReplicas: 1
-laravelTag: 11.0.8
-laravelMemorylimit: "200Mi"
-laravelCPULimit: "2"
-laravelMemoryRequest: "100Mi" 
-laravelCPURequest: "0.5"
-laravelPVCStorage: 500Mi
+laravelReplicas: 1<br>
+laravelTag: 11.0.8<br>
+laravelMemorylimit: "200Mi"<br>
+laravelCPULimit: "2"<br>
+laravelMemoryRequest: "100Mi" <br>
+laravelCPURequest: "0.5"<br>
+laravelPVCStorage: 500Mi<br>
 
-phpmyadminReplicas: 1
-phpmyadminTag: 5.2.1
-phpmyadminIsDeployed: true
+phpmyadminReplicas: 1<br>
+phpmyadminTag: 5.2.1<br>
+phpmyadminIsDeployed: true<br>
 
-mysqlReplicas: 1
-mysqlTag: 8.0
-mysqlMemorylimit: "800Mi" 
-mysqlCPULimit: "2"
-mysqlMemoryRequest: "500Mi"
-mysqlCPURequest: "1"
-mysqlPVCStorage: 500Mi
+mysqlReplicas: 1<br>
+mysqlTag: 8.0<br>
+mysqlMemorylimit: "800Mi"<br>
+mysqlCPULimit: "2"<br>
+mysqlMemoryRequest: "500Mi"<br>
+mysqlCPURequest: "1"<br>
+mysqlPVCStorage: 500Mi<br>
 
-dbName: weeklyDB
-dbUser: dnazareno
-dbPass: passmuyseguro
-dbRootPass: passmuyseguroperoroot
+dbName: weeklyDB<br>
+dbUser: dnazareno<br>
+dbPass: passmuyseguro<br>
+dbRootPass: passmuyseguroperoroot<br>
 
-ingressClassName: nginx
-ingressHost: k8sweekly.com
-ingressPathLaravel: /laravel
-ingressPathPhpmyadmin: /phpmyadmin
+ingressClassName: nginx<br>
+ingressHost: k8sweekly.com<br>
+ingressPathLaravel: /laravel<br>
+ingressPathPhpmyadmin: /phpmyadmin<br>
 
-cronjobPVCStorage: 500Mi
-cronjobSchedule: "@daily"
-cronjobBackupName: backup-$(date +'%Y%m%d%H%M%S')
+cronjobPVCStorage: 500Mi<br>
+cronjobSchedule: "@daily"<br>
+cronjobBackupName: backup-$(date +'%Y%m%d%H%M%S')<br>
 
-Se crearon dos values de ejemplo con un lanzamiento de Laravel (solo laravel y BBDD) y otro con un lanzamiento de Laravel (laravel y BBDD) y phpmyadmin.
-Son los archivos "value-laravel.yaml" y "value-laravel-pma.yaml"
+Se crearon dos values de ejemplo con un lanzamiento de Laravel (solo laravel y BBDD) y otro con un lanzamiento de Laravel (laravel y BBDD) y phpmyadmin.<br>
+Son los archivos "value-laravel.yaml" y "value-laravel-pma.yaml"<br>
 
 ############################################################
 ### Cronjob DUMP ###
 ############################################################
 
-Se incluye un cronjob que se encarga de hacer un backup de la BBDD de Laravel cada 24 horas.
-El backup se guarda en un volumen persistente
+Se incluye un cronjob que se encarga de hacer un backup de la BBDD de Laravel cada 24 horas.<br>
+El backup se guarda en un volumen persistente<br>
 
 ############################################################
 ### Configuración del Schedule según documentación de Helm ###
 ############################################################
 
-__________________ minute (0 - 59)
-|  _______________ hour (0 - 23)
-|  |  ____________ day of the month (0 - 23)
-|  |  |  _________ month (1 - 12)
-|  |  |  |  ______ day of the week (0 - 6, start con sunday)
-|  |  |  |  |
-|  |  |  |  |
-*  *  *  *  *
+__________________ minute (0 - 59)<br>
+|  _______________ hour (0 - 23)<br>
+|  |  ____________ day of the month (0 - 23)<br>
+|  |  |  _________ month (1 - 12)<br>
+|  |  |  |  ______ day of the week (0 - 6, start con sunday)<br>
+|  |  |  |  |<br>
+|  |  |  |  |<br>
+*  *  *  *  *<br>
 
-@yearly or @annually    anualmente el 1 de enero              0 0 1 1 *
-@monthly                mensualmente el primer día del mes    0 0 1 * *
-@weekly                 semanalmente el domingo a medianoche  0 0 * * 0
-@daily                  diariamente a medianoche              0 0 * * *
-@hourly                 a cada hora,a los 0 minute            0 * * * *
+@yearly or @annually    anualmente el 1 de enero              0 0 1 1 *<br>
+@monthly                mensualmente el primer día del mes    0 0 1 * *<br>
+@weekly                 semanalmente el domingo a medianoche  0 0 * * 0<br>
+@daily                  diariamente a medianoche              0 0 * * *<br>
+@hourly                 a cada hora,a los 0 minute            0 * * * *<br>
