@@ -1,8 +1,7 @@
-############################################################<br>
 # ENUNCIADO Y ANOTACIONES
 ############################################################<br>
 ############################################################<br>
-### Laravel ###
+## Laravel ##
 
 Se usó la imagen de bitnami/laravel y, se propone, en su version 11.0.8<br>
 Laravel tiene limites y requests de CPU y memoria.<br>
