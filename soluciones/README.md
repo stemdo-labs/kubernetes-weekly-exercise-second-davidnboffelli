@@ -7,10 +7,10 @@
 
 Se usó la imagen de bitnami/laravel y, se propone, en su version 11.0.8<br>
 Laravel tiene limites y requests de CPU y memoria.<br>
-No se creó un LimitRange, sino que se asignaron directamente en el deployment de laravel<br>
+&nbsp;No se creó un LimitRange, sino que se asignaron directamente en el deployment de laravel<br>
 Laravel tiene un readinessProbe y un livenessProbe<br>
 Volumen persistente para Laravel<br>
-Se usaron volumenes dinámicos. Los PV se crean automáticamente según necesidad.<br>
+&nbsp;Se usaron volumenes dinámicos. Los PV se crean automáticamente según necesidad.<br>
 Ingress para acceder a Laravel desde un navegador<br>
 
 ############################################################
@@ -19,9 +19,9 @@ Ingress para acceder a Laravel desde un navegador<br>
 
 Se usó la imagen oficial de la BBDD mysql y, se propone, en su version 8.0<br>
 Mysql tiene limites y requests de CPU y memoria.<br>
-No se creó un LimitRange, sino que se asignaron directamente en el deployment de mysql<br>
+&nbsp;No se creó un LimitRange, sino que se asignaron directamente en el deployment de mysql<br>
 Volumen persistentes para la BBDD<br>
-Se usaron volumenes dinámicos. Los PV se crean automáticamente según necesidad.<br>
+&nbsp;Se usaron volumenes dinámicos. Los PV se crean automáticamente según necesidad.<br>
 No es un deployment, sino un statefulset<br>
 
 ############################################################
@@ -74,7 +74,7 @@ cronjobPVCStorage: Tamaño del volumen persistente que donde se guardará el bac
 cronjobSchedule: Configuración del momento de ejecución del cronjob según documentación de Helm<br>
 cronjobBackupName: nombre del archivo sql donde se guardará el backup de la base de datos mysql<br>
 
-Valores en el Value por defecto:<br>
+##### Valores en el Value por defecto:<br>
 namespace: laravel<br>
 
 laravelReplicas: 1<br>
