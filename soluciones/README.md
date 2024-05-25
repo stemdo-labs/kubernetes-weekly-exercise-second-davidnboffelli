@@ -3,7 +3,7 @@
 ############################################################<br>
 ############################################################<br>
 ### Laravel: ###
-############################################################<br>
+
 Se usó la imagen de bitnami/laravel y, se propone, en su version 11.0.8<br>
 Laravel tiene limites y requests de CPU y memoria.<br>
 &nbsp;&nbsp;&nbsp;No se creó un LimitRange, sino que se asignaron directamente en el deployment de laravel<br>
@@ -14,7 +14,7 @@ Ingress para acceder a Laravel desde un navegador<br>
 
 ############################################################<br>
 ### BBDD: ###
-############################################################<br>
+
 Se usó la imagen oficial de la BBDD mysql y, se propone, en su version 8.0<br>
 Mysql tiene limites y requests de CPU y memoria.<br>
 &nbsp;&nbsp;&nbsp;No se creó un LimitRange, sino que se asignaron directamente en el deployment de mysql<br>
@@ -24,15 +24,15 @@ No es un deployment, sino un statefulset<br>
 
 ############################################################<br>
 ### phpMyAdmin: ###
-############################################################<br>
+
 Se usó la imagen oficial de phpmyadmin y, se propone, en su version 5.2.1<br>
 Ingress para acceder a phpmyadmin desde un navegador<br>
 Se usó el mismo ingress que laravel<br>
 phpmyadmin solicita autenticación para acceder<br>
 
 ############################################################<br>
-### chart: ###
-############################################################<br>
+### Chart: ###
+
 En el value correspondiente, además de las variables default de los chart, se pueden configurar las siguientes variables:<br>
 
 namespace: Nombre del namespace común para todos los recursos que despliega el chart<br>
@@ -113,21 +113,21 @@ Son los archivos "value-laravel.yaml" y "value-laravel-pma.yaml"<br>
 
 ############################################################<br>
 ### Cronjob DUMP ###
-############################################################<br>
+
 Se incluye un cronjob que se encarga de hacer un backup de la BBDD de Laravel cada 24 horas.<br>
 El backup se guarda en un volumen persistente<br>
 
 ############################################################<br>
 ### Configuración del Schedule según documentación de Helm ###
-############################################################<br>
+
 __________________ minute (0 - 59)<br>
-|  _______________ hour (0 - 23)<br>
-|  |  ____________ day of the month (0 - 23)<br>
-|  |  |  _________ month (1 - 12)<br>
-|  |  |  |  ______ day of the week (0 - 6, start con sunday)<br>
-|  |  |  |  |<br>
-|  |  |  |  |<br>
-*  *  *  *  *<br>
+| &nbsp; _______________ hour (0 - 23)<br>
+| &nbsp; | &nbsp;____________ day of the month (0 - 23)<br>
+| &nbsp; | &nbsp; |&nbsp;_________ month (1 - 12)<br>
+| &nbsp; | &nbsp; |&nbsp; |&nbsp;______ day of the week (0 - 6, start con sunday)<br>
+| &nbsp; | &nbsp; |&nbsp; |&nbsp; |<br>
+| &nbsp; | &nbsp; |&nbsp; |&nbsp; |<br>
+\* &nbsp; \* &nbsp; \*&nbsp; \*&nbsp; \*<br>
 
 @yearly or @annually    anualmente el 1 de enero              0 0 1 1 *<br>
 @monthly                mensualmente el primer día del mes    0 0 1 * *<br>
