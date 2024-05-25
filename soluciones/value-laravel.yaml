@@ -16,9 +16,9 @@ laravelMemoryRequest: "100Mi"
 laravelCPURequest: "0.5"
 laravelPVCStorage: 500Mi
 
-phpmyadminReplicas: 1
-phpmyadminTag: 5.2.1
-phpmyadminIsDeployed: true
+phpmyadminReplicas: ""
+phpmyadminTag: ""
+phpmyadminIsDeployed: false
 
 mysqlReplicas: 1
 mysqlTag: 8.0
@@ -36,12 +36,11 @@ dbRootPass: passmuyseguroperoroot
 ingressClassName: nginx
 ingressHost: k8sweekly.com
 ingressPathLaravel: /laravel
-ingressPathPhpmyadmin: /phpmyadmin
+ingressPathPhpmyadmin: ""
 
 cronjobPVCStorage: 500Mi
 cronjobSchedule: "@daily"
 cronjobBackupName: backup-$(date +'%Y%m%d%H%M%S')
-
 
 #############################################
 ### END CUSTOM VALUES FOR CHART-DNAZARENO
