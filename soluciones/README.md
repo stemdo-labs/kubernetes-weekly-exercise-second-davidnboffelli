@@ -1,6 +1,5 @@
 # ENUNCIADO Y ANOTACIONES
-############################################################<br>
-############################################################<br>
+
 ## Laravel ##
 
 Se usó la imagen de bitnami/laravel y, se propone, en su version 11.0.8<br>
@@ -11,8 +10,7 @@ Volumen persistente para Laravel<br>
 &nbsp;&nbsp;&nbsp;Se usaron volumenes dinámicos. Los PV se crean automáticamente según necesidad.<br>
 Ingress para acceder a Laravel desde un navegador<br>
 
-############################################################<br>
-### BBDD ###
+## BBDD ##
 
 Se usó la imagen oficial de la BBDD mysql y, se propone, en su version 8.0<br>
 Mysql tiene limites y requests de CPU y memoria.<br>
@@ -21,16 +19,14 @@ Volumen persistentes para la BBDD<br>
 &nbsp;&nbsp;&nbsp;Se usaron volumenes dinámicos. Los PV se crean automáticamente según necesidad.<br>
 No es un deployment, sino un statefulset<br>
 
-############################################################<br>
-### phpMyAdmin ###
+## phpMyAdmin ##
 
 Se usó la imagen oficial de phpmyadmin y, se propone, en su version 5.2.1<br>
 Ingress para acceder a phpmyadmin desde un navegador<br>
 Se usó el mismo ingress que laravel<br>
 phpmyadmin solicita autenticación para acceder<br>
 
-############################################################<br>
-### Chart ###
+## Chart ##
 
 En el value correspondiente, además de las variables default de los chart, se pueden configurar las siguientes variables:<br>
 
@@ -110,14 +106,12 @@ cronjobBackupName: backup-$(date +'%Y%m%d%H%M%S')<br>
 Se crearon dos values de ejemplo con un lanzamiento de Laravel (solo laravel y BBDD) y otro con un lanzamiento de Laravel (laravel y BBDD) y phpmyadmin.<br>
 Son los archivos "value-laravel.yaml" y "value-laravel-pma.yaml"<br>
 
-############################################################<br>
-### Cronjob DUMP ###
+## Cronjob DUMP ##
 
 Se incluye un cronjob que se encarga de hacer un backup de la BBDD de Laravel cada 24 horas.<br>
 El backup se guarda en un volumen persistente<br>
 
-############################################################<br>
-### Configuración del Schedule según documentación de Helm ###
+## Configuración del Schedule según documentación de Helm ##
 
 __________________ minute (0 - 59)<br>
 | &nbsp;&nbsp;  _______________ hour (0 - 23)<br>
