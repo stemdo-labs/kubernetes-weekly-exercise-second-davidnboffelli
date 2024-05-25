@@ -7,10 +7,10 @@
 
 Se usó la imagen de bitnami/laravel y, se propone, en su version 11.0.8<br>
 Laravel tiene limites y requests de CPU y memoria.<br>
-&nbsp;No se creó un LimitRange, sino que se asignaron directamente en el deployment de laravel<br>
+&nbsp;&nbsp;&nbsp;No se creó un LimitRange, sino que se asignaron directamente en el deployment de laravel<br>
 Laravel tiene un readinessProbe y un livenessProbe<br>
 Volumen persistente para Laravel<br>
-&nbsp;Se usaron volumenes dinámicos. Los PV se crean automáticamente según necesidad.<br>
+&nbsp;&nbsp;&nbsp;Se usaron volumenes dinámicos. Los PV se crean automáticamente según necesidad.<br>
 Ingress para acceder a Laravel desde un navegador<br>
 
 ############################################################
@@ -19,13 +19,13 @@ Ingress para acceder a Laravel desde un navegador<br>
 
 Se usó la imagen oficial de la BBDD mysql y, se propone, en su version 8.0<br>
 Mysql tiene limites y requests de CPU y memoria.<br>
-&nbsp;No se creó un LimitRange, sino que se asignaron directamente en el deployment de mysql<br>
+&nbsp;&nbsp;&nbsp;No se creó un LimitRange, sino que se asignaron directamente en el deployment de mysql<br>
 Volumen persistentes para la BBDD<br>
-&nbsp;Se usaron volumenes dinámicos. Los PV se crean automáticamente según necesidad.<br>
+&nbsp;&nbsp;&nbsp;Se usaron volumenes dinámicos. Los PV se crean automáticamente según necesidad.<br>
 No es un deployment, sino un statefulset<br>
 
 ############################################################
-### phpmyadmin: ###
+### phpMyAdmin: ###
 ############################################################
 Se usó la imagen oficial de phpmyadmin y, se propone, en su version 5.2.1<br>
 Ingress para acceder a phpmyadmin desde un navegador<br>
