@@ -121,13 +121,13 @@ El backup se guarda en un volumen persistente<br>
 ### Configuración del Schedule según documentación de Helm ###
 
 __________________ minute (0 - 59)<br>
-| &nbsp;   _______________ hour (0 - 23)<br>
-| &nbsp;  | &nbsp;   ____________ day of the month (0 - 23)<br>
-| &nbsp;  | &nbsp;  |&nbsp;  _________ month (1 - 12)<br>
-| &nbsp;  | &nbsp;  |&nbsp;  |&nbsp;  ______ day of the week (0 - 6, start con sunday)<br>
-| &nbsp;  | &nbsp;  |&nbsp;  |&nbsp;  |<br>
-| &nbsp;  | &nbsp;  |&nbsp;  |&nbsp;  |<br>
-\* &nbsp; \* &nbsp; \*&nbsp; \*&nbsp; \*<br>
+| &nbsp;&nbsp;  _______________ hour (0 - 23)<br>
+| &nbsp;&nbsp; | &nbsp;&nbsp;   ____________ day of the month (0 - 23)<br>
+| &nbsp;&nbsp; | &nbsp;&nbsp;  |&nbsp;&nbsp;  _________ month (1 - 12)<br>
+| &nbsp;&nbsp; | &nbsp;&nbsp;  |&nbsp;&nbsp;  |&nbsp;&nbsp;&nbsp;  ______ day of the week (0 - 6, start con sunday)<br>
+| &nbsp;&nbsp; | &nbsp;&nbsp;  |&nbsp;&nbsp;  |&nbsp;&nbsp;&nbsp;  |<br>
+| &nbsp;&nbsp; | &nbsp;&nbsp;  |&nbsp;&nbsp;  |&nbsp;&nbsp;&nbsp;  |<br>
+\*&nbsp;&nbsp;&nbsp;\*&nbsp;&nbsp;&nbsp;\*&nbsp;&nbsp;&nbsp;\*&nbsp;&nbsp;&nbsp;\*<br>
 
 @yearly or @annually    anualmente el 1 de enero              0 0 1 1 *<br>
 @monthly                mensualmente el primer día del mes    0 0 1 * *<br>
