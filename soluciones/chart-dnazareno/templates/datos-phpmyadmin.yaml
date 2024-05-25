@@ -1,0 +1,12 @@
+{{- if .Values.phpmyadminIsDeployed }}
+apiVersion: v1
+data:
+  DB_DATABASE: {{.Values.dbName}}
+  DB_DATABASE_HOST: {{ .Release.Name }}-mysql-service.laravel.svc.cluster.local
+  DB_DATABASE_PORT_NUMBER: "3306"
+  DB_DATABASE_USER: {{.Values.dbUser}}
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-datos-phpmyadmin
+  namespace: {{.Values.namespace}}
+{{- end}}

@@ -1,0 +1,41 @@
+{{- if .Values.phpmyadminIsDeployed }}
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-phpmyadmin-deploy
+  namespace: {{.Values.namespace}}
+spec:
+  selector:  
+    matchLabels:
+      app: phpmyadmin
+  replicas: {{.Values.phpmyadminReplicas}}
+  template:  
+    metadata:
+      labels:
+        app: phpmyadmin
+    spec:
+      containers:
+      - name: phpmyadmin
+        image: "phpmyadmin:{{.Values.phpmyadminTag}}"
+        ports:
+        - containerPort: 80
+        env:
+          - name: PMA_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Release.Name }}-datos-phpmyadmin
+                key: DB_DATABASE_HOST
+          - name: PMA_PORT
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Release.Name }}-datos-phpmyadmin
+                key: DB_DATABASE_PORT_NUMBER
+          - name: MYSQL_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}-phpmyadmin-credentials
+                key: DB_ROOT_PASSWORD
+          - name: APACHE_PORT
+            value: "8090"
+                
+{{- end}}

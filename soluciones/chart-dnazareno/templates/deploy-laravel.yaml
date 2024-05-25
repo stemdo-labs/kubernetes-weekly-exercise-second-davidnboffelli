@@ -1,0 +1,76 @@
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-laravel-deploy
+  namespace: {{.Values.namespace}}
+spec:
+  selector:  
+    matchLabels:
+      app: laravel
+  replicas: {{.Values.laravelReplicas}}
+  strategy:
+     type: Recreate
+  template:   
+    metadata:
+      labels:
+        app: laravel
+    spec:
+      containers:
+      - name: laravel
+        image: "bitnami/laravel:{{ .Values.laravelTag }}"
+        ports:
+        - containerPort: 8000
+        volumeMounts:
+          - mountPath: /app
+            name: vol-laravel
+        resources:
+          limits:
+              memory: {{.Values.laravelMemorylimit}}
+              cpu: {{.Values.laravelCPULimit}}
+          requests:
+              memory: {{.Values.laravelMemoryRequest}}
+              cpu: {{.Values.laravelCPURequest}}
+        livenessProbe:
+          exec:
+            command:
+            - ls
+            - /tmp/
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        readinessProbe:
+          exec:
+            command:
+            - ls
+            - /tmp/
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        env:
+          - name: LARAVEL_DATABASE_HOST
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Release.Name }}-datos-mysql
+                key: DB_DATABASE_HOST
+          - name: LARAVEL_DATABASE_PORT_NUMBER
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Release.Name }}-datos-mysql
+                key: DB_DATABASE_PORT_NUMBER
+          - name: LARAVEL_DATABASE_USER
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Release.Name }}-datos-mysql
+                key: DB_DATABASE_USER
+          - name: LARAVEL_DATABASE_NAME
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Release.Name }}-datos-mysql
+                key: DB_DATABASE
+          - name: LARAVEL_DATABASE_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Release.Name }}-db-credentials
+                key: DB_DATABASE_PASSWORD
+      volumes:
+        - name: vol-laravel
+          persistentVolumeClaim:
+             claimName: {{ .Release.Name }}-pvc-laravel
